@@ -1,8 +1,113 @@
-Credit Score Classification for Paisabazaar📖 OverviewThis project focuses on developing a robust machine learning model to predict customer credit scores for Paisabazaar, a leading financial services platform. By analyzing a rich dataset of customer financial and behavioral data, the model classifies credit scores into three categories: Good, Standard, and Poor.The primary goal is to empower Paisabazaar with a data-driven tool to enhance risk management, streamline loan approvals, and offer personalized financial products to its customers.🎯 Problem StatementPaisabazaar needs an accurate and automated system to assess the creditworthiness of loan applicants. The key business objectives are:Reduce Risk: Minimize loan defaults by accurately identifying high-risk applicants.Improve Efficiency: Automate the credit assessment process for faster and more consistent decision-making.Personalize Services: Segment customers based on their credit profiles to offer tailored financial products and advice.Data-Driven Decisions: Replace or augment traditional credit assessment methods with a predictive model based on historical data.📊 DatasetThe analysis was performed on a dataset containing 100,000 customer records with 27 distinct features. The features encompass a wide range of information, including:Demographics: Age, OccupationFinancial Health: Annual Income, Monthly Balance, Outstanding DebtCredit Behavior: Number of Loans, Payment History, Credit Utilization Ratio, Credit MixTarget Variable: Credit_Score (Categorical: Poor, Standard, Good)⚙️ Project WorkflowThe project followed a structured machine learning pipeline:Data Cleaning & Preprocessing: Handled missing values, corrected data types, and dropped irrelevant columns (ID, Name, SSN).Feature Engineering: Created new insightful features like Debt_to_Income and EMI_to_Income ratios. Transformed the multi-valued Type_of_Loan column into one-hot encoded features.Exploratory Data Analysis (EDA): Generated univariate and bivariate visualizations to uncover key relationships between features and the target credit score.Model Building: Trained and evaluated three powerful gradient-boosting and ensemble models:Random Forest ClassifierXGBoost ClassifierLightGBM ClassifierModel Evaluation: Assessed model performance using Accuracy, F1-Score, Classification Reports, and Confusion Matrices.Feature Importance: Analyzed feature importances from the best model to identify the key drivers of creditworthiness.📈 Modeling and ResultsAll models performed well, but the LightGBM Classifier delivered the best results, demonstrating a superior ability to classify credit scores accurately.| Model | Accuracy | F1-Score (Macro) || Random Forest | 82.1% | 77.5% || XGBoost | 84.8% | 80.9% || LightGBM | 85.2% | 81.4% |The confusion matrix for the LightGBM model shows its effectiveness in distinguishing between the 'Good', 'Standard', and 'Poor' credit score classes.Key Predictors of Credit ScoreThe feature importance analysis confirmed that financial discipline and debt management are the most critical factors. The top predictors were:Interest_RateCredit_MixOutstanding_DebtDebt_to_Income RatioCredit_History_Age🛠️ Tech StackData Manipulation: Pandas, NumPyData Visualization: Matplotlib, SeabornMachine Learning: Scikit-learn, XGBoost, LightGBMDevelopment Environment: Jupyter Notebook, Google Colab🚀 How to RunTo replicate this project on your local machine, follow these steps:Clone the repository:git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
-cd your-repo-name
+# Credit Score Classification for Paisabazaar
 
-Install the required dependencies:pip install -r requirements.txt
+## 📌 Project Overview
+Paisabazaar, a financial services company, helps customers access loans and credit products.  
+Credit score is a key metric for lenders to assess repayment capacity and manage risks.  
+This project builds a **machine learning classification model** to categorize customers’ credit scores as **Good / Standard / Poor** using financial and behavioral data.
 
-(Note: You will need to create a requirements.txt file by running pip freeze > requirements.txt in your environment.)Launch Jupyter Notebook:jupyter notebook
+## 🎯 Objectives
+- Clean and preprocess customer data (income, debt, loans, repayment history, etc.).
+- Engineer features such as **Debt-to-Income** and **EMI-to-Income** ratios.
+- Perform **exploratory data analysis (EDA)** to identify key trends.
+- Build and evaluate ML models (**Random Forest, LightGBM, XGBoost**).
+- Provide insights and recommendations for risk management.
 
-Run the notebook: Open the .ipynb file and execute the cells sequentially.🔮 Future WorkHyperparameter Tuning: Use GridSearchCV or Optuna to fine-tune the LightGBM model for potentially higher performance.Model Explainability (XAI): Integrate SHAP to explain individual predictions, providing transparency and building trust in the model's decisions.Deployment: Package the final model into a REST API using Flask or FastAPI and containerize it with Docker for scalable deployment.
+---
+
+## 📂 Dataset
+- **File:** `dataset-2.csv`  
+- **Records:** 100,000+  
+- **Features:** Demographics, income, loan details, credit utilization, payment history.  
+- **Target:** `Credit_Score` (Good, Standard, Poor)
+
+Sensitive identifiers (`ID`, `Name`, `SSN`) were dropped to protect privacy.
+
+---
+
+## ⚙️ Steps in the Project
+1. **Data Loading & Inspection**
+   - View shape, columns, datatypes, missing values, and anomalies.
+2. **Data Cleaning**
+   - Handle missing values (median for numeric, mode for categorical).
+   - Multi-hot encode `Type_of_Loan`.
+   - Standardize categorical values.
+3. **Feature Engineering**
+   - Create `Debt_to_Income` and `EMI_to_Income`.
+   - Encode categorical features (Label/One-hot encoding).
+4. **Exploratory Data Analysis**
+   - Univariate (distributions, histograms).
+   - Bivariate (boxplots, relationships with `Credit_Score`).
+   - Multivariate (correlation heatmap, pairplots).
+5. **Model Building**
+   - Train/test split (80/20).
+   - Standardize numeric features.
+   - Train Random Forest, LightGBM, XGBoost.
+6. **Evaluation**
+   - Accuracy, Macro F1, Classification Report.
+   - Confusion Matrix.
+   - Feature Importance visualization.
+7. **Interpretation & Business Insights**
+   - Identify top drivers of credit score (delayed payments, outstanding debt, utilization ratio).
+   - Recommend actions for Paisabazaar.
+
+---
+
+## 📊 Results
+- **Random Forest**: Robust baseline with good interpretability.  
+- **LightGBM**: Best overall balance of accuracy and speed.  
+- **XGBoost**: High recall on "Poor" credit score segment.  
+
+**Key Features Driving Predictions**:
+- Number of delayed payments  
+- Outstanding debt  
+- Credit utilization ratio  
+- Annual income  
+- Payment behavior  
+
+---
+
+## 🚀 Business Recommendations
+- Flag customers with **frequent delayed payments** or **high debt-to-income ratio** as high-risk.  
+- Offer **tailored financial products** (secured loans, low-interest options) to Standard/Poor categories.  
+- Encourage **credit limit management and on-time payments** to improve customer scores.  
+
+---
+
+## 🛠️ Tech Stack
+- **Python**: pandas, numpy, matplotlib, seaborn  
+- **ML Models**: scikit-learn, XGBoost, LightGBM  
+- **Environment**: Jupyter Notebook / Google Colab  
+
+---
+
+## 📁 Repository Structure
+```
+├── dataset-2.csv              # Dataset
+├── Credit_Score_Template_Fixed.ipynb   # Main Notebook with full pipeline
+├── README.md                  # Project Documentation
+```
+
+---
+
+## ▶️ How to Run
+1. Clone the repo or download the notebook and dataset.
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Open notebook:
+   ```bash
+   jupyter notebook Credit_Score_Template_Fixed.ipynb
+   ```
+4. Run all cells sequentially to reproduce results.
+
+---
+
+## 📌 Future Work
+- Hyperparameter tuning for higher accuracy.
+- Deployment via REST API or Chrome extension for real-time scoring.
+- Integrating SHAP/LIME for model explainability.
+
+---
+
+
